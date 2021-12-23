@@ -1,0 +1,64 @@
+---
+
+# Ansible specific definitions
+########################################################################################################################
+edit_comment_dev: "# Auto-generated via Ansible: edit src/Dockerfiles/dev/Dockerfile.j2 instead."
+
+
+
+# Prod dist directories
+########################################################################################################################
+tpl_directories:
+  # For "dev" create all variants: cli, fpm, supervisord
+  - path: "../dist/dev/{{ php_version }}-{{ php_type }}-{{ os_version }}/configs/"
+
+
+
+# Dockerfile paths for cli, fpm and supervisord Dockerfiles
+########################################################################################################################
+tpl_dockerfiles:
+  - src: Dockerfiles/dev/Dockerfile.j2
+    dst: "../dist/dev/{{ php_version }}-{{ php_type }}-{{ os_version }}/Dockerfile"
+
+
+
+# PHP config paths
+########################################################################################################################
+tpl_configs:
+  # 99-xdebug.ini
+  - src: config/99-xdebug.ini
+    dst: "../dist/dev/{{ php_version }}-{{ php_type }}-{{ os_version }}/configs/99-xdebug.ini"
+
+
+
+# Dgoss tests
+########################################################################################################################
+tpl_docker_tests:
+  - src: Dockerfiles/dev/goss.yaml.j2
+    dst: "../dist/dev/{{ php_version }}-{{ php_type }}-{{ os_version }}/goss.yaml"
+
+
+
+# Enabled extensions
+########################################################################################################################
+# ext_native_enabled:
+#   - ...
+
+ext_pecl_enabled:
+  - xdebug
+
+ext_pecl_versions:
+  xdebug: "3.1.2"
+
+install_composer: true
+install_faketime: true
+
+install_postgres_client: true
+install_postgres_postgis: true
+install_mysql_client: false
+
+system_packages:
+  - git
+  - bash
+  - unzip
+  - nano

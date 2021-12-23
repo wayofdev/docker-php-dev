@@ -1,0 +1,60 @@
+---
+
+all:
+  children:
+    dev:
+      hosts:
+        7.4-cli-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 7.4
+          php_type: cli
+          os_version: alpine
+        7.4-fpm-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 7.4
+          php_type: fpm
+          os_version: alpine
+        7.4-supervisord-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 7.4
+          php_type: supervisord
+          os_version: alpine
+        8.0-cli-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.0
+          php_type: cli
+          os_version: alpine
+        8.0-fpm-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.0
+          php_type: fpm
+          os_version: alpine
+        8.0-supervisord-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.0
+          php_type: supervisord
+          os_version: alpine
+        8.1-cli-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.1
+          php_type: cli
+          os_version: alpine
+        8.1-fpm-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.1
+          php_type: fpm
+          os_version: alpine
+        8.1-supervisord-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.1
+          php_type: supervisord
+          os_version: alpine

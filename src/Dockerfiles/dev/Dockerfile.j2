@@ -1,0 +1,70 @@
+{{ edit_comment_dev }}
+
+FROM wayofdev/php-prod:{{ php_version }}-{{ php_type }}-{{ os_version }}-latest
+
+# Labels
+# https://github.com/opencontainers/image-spec/blob/main/annotations.md
+LABEL "maintainer"="lotyp <lotyp7@gmail.com>"
+LABEL "vendor"="wayofdev"
+LABEL "org.opencontainers.image.authors"="lotyp <lotyp7@gmail.com>"
+LABEL "org.opencontainers.image.url"="https://hub.docker.com/r/wayofdev/php-{{ level }}"
+LABEL "org.opencontainers.image.documentation"="https://github.com/wayofdev/docker-php-{{ level }}"
+LABEL "org.opencontainers.image.source"="https://github.com/wayofdev/docker-php-{{ level }}"
+LABEL "org.opencontainers.image.vendor"="wayofdev"
+LABEL "org.opencontainers.image.licenses"="MIT"
+LABEL "org.opencontainers.image.ref.name"="{{ php_version }}-{{ level }}"
+LABEL "org.opencontainers.image.title"="PHP-{{ php_type|upper }} {{ php_version }}-{{ level }}"
+LABEL "org.opencontainers.image.description"="PHP-{{ php_type|upper }} {{ php_version }}-{{ level }}"
+
+USER root
+
+RUN set -eux; \
+    apk -U upgrade -a \
+    # Add production dependencies
+    && apk add --no-cache \
+{% for pkg in system_packages | unique %}
+        {{ pkg }} \
+{% endfor %}
+    # Temporary build dependencies for compiling Pecl extensions
+    && apk add --no-cache --virtual .temp-build-deps \
+        $PHPIZE_DEPS \
+    # Pecl Dependencies
+    # Xdebug
+{% if 'xdebug' in ext_pecl_enabled %}
+    && pecl install xdebug-{{ ext_pecl_versions.xdebug }} \
+    && docker-php-ext-enable xdebug \
+{% endif %}
+    # Other Dependencies
+    # Composer
+{% if true == install_composer %}
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
+{% endif %}
+{% if true == install_postgres_client %}
+    && apk add --no-cache \
+        postgresql-client \
+{% if true == install_postgres_postgis %}
+        postgis \
+{% endif %}
+{% endif %}
+{% if true == install_mysql_client %}
+    && apk add --no-cache mysql-client \
+{% endif %}
+    # LibFakeTime - Dynamically change time in docker containers
+    # Adding the faketime library to the preload file needs to be done last.
+    # Otherwise, it will preload it for all commands that follow in this file
+{% if true == install_faketime %}
+    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing libfaketime \
+    && echo "/usr/lib/faketime/libfaketime.so.1" >> /etc/ld.so.preload \
+{% endif %}
+    && chown -R www-data:www-data /usr/local/etc/php/conf.d/ \
+    && apk del -f .temp-build-deps
+
+{% if 'xdebug' in ext_pecl_enabled %}
+COPY --chown=www-data ./configs/99-xdebug.ini /usr/local/etc/php/conf.d/
+{% endif %}
+
+USER www-data
+
+{% if 'supervisord' == php_type %}
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+{% endif %}
