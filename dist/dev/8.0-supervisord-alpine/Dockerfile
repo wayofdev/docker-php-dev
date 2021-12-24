@@ -36,9 +36,6 @@ RUN set -eux; \
     # Other Dependencies
     # Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
-    && apk add --no-cache \
-        postgresql-client \
-        postgis \
     # LibFakeTime - Dynamically change time in docker containers
     # Adding the faketime library to the preload file needs to be done last.
     # Otherwise, it will preload it for all commands that follow in this file

@@ -53,8 +53,8 @@ ext_pecl_versions:
 install_composer: true
 install_faketime: true
 
-install_postgres_client: true
-install_postgres_postgis: true
+install_postgres_client: false
+install_postgres_postgis: false
 install_mysql_client: false
 
 system_packages:

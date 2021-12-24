@@ -39,6 +39,7 @@ RUN set -eux; \
 {% if true == install_composer %}
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
 {% endif %}
+{% if 'cli' == php_type %}
 {% if true == install_postgres_client %}
     && apk add --no-cache \
         postgresql-client \
@@ -48,6 +49,7 @@ RUN set -eux; \
 {% endif %}
 {% if true == install_mysql_client %}
     && apk add --no-cache mysql-client \
+{% endif %}
 {% endif %}
     # LibFakeTime - Dynamically change time in docker containers
     # Adding the faketime library to the preload file needs to be done last.

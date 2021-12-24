@@ -36,6 +36,20 @@ package:
   {{ pkg }}:
     installed: true
 {% endfor %}
+{% if 'cli' == php_type %}
+{% if true == install_postgres_client %}
+  postgresql-client:
+    installed: true
+{% endif %}
+{% if true == install_postgres_postgis %}
+  postgis:
+    installed: true
+{% endif %}
+{% if true == install_mysql_client %}
+  mysql-client:
+    installed: true
+{% endif %}
+{% endif %}
 command:
   "php -r \"xdebug_info();\"":
     stdout:
