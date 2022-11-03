@@ -1,3 +1,5 @@
+---
+
 file:
   /usr/lib/faketime/libfaketime.so.1:
     filetype: file
@@ -43,3 +45,5 @@ command:
     stdout:
       - "/usr/lib/faketime/libfaketime.so.1"
     exit-status: 0
+
+...

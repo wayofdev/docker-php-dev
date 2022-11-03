@@ -31,7 +31,7 @@ RUN set -eux; \
         $PHPIZE_DEPS \
     # Pecl Dependencies
     # Xdebug
-    && pecl install xdebug-3.1.2 \
+    && pecl install xdebug-3.1.5 \
     && docker-php-ext-enable xdebug \
     # Other Dependencies
     # Composer

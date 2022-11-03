@@ -1,14 +1,22 @@
-name: ci
+---
 
-on:
+name: CI
+
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - 'master'
     tags:
-      - 'v*'
+      - 'v*.*.*'
   pull_request:
     branches:
       - 'master'
+  release:
+    types:
+      - 'created'
+  schedule:
+    # Every Sunday at 08:10
+    - cron: '10 8 * * 0'
 
 jobs:
   build:
@@ -17,19 +25,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php_version: ['7.4', '8.0', '8.1']
+        # Build only latest
+        php_version: ['8.1']
+        # Build all versions
+        # php_version: ['7.4', '8.0', '8.1']
         php_type: ['fpm', 'cli', 'supervisord']
-        os_version: ['alpine']
+        os_name: ['alpine']
     steps:
       - uses: e1himself/goss-installation-action@v1.0.4
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
 
       - name: Set Environment Variables
         env:
           IMAGE_NAMESPACE: wayofdev/php-dev
-          TEMPLATE: ${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_version }}
+          TEMPLATE: ${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}
         run: |
           export RELEASE_VERSION=${GITHUB_REF#refs/*/}
           echo "IMAGE_NAMESPACE=${IMAGE_NAMESPACE}" >> $GITHUB_ENV
@@ -38,7 +49,7 @@ jobs:
 
       - name: Docker Meta
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ${{ env.IMAGE_NAMESPACE }}
           tags: |
@@ -48,30 +59,28 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
           flavor: |
             latest=false
-            prefix=${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_version }}-
+            prefix=${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}-
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      #
       ### For Cross Platform OSX builds uncomment these lines
-      #
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v1
-      #   with:
-      #     platforms: arm64
-      #
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v1
-      #   with:
-      #     install: true
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: arm64
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          install: true
 
       - name: Build and Export to Docker
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./dist/dev/${{ env.TEMPLATE }}
           load: true
@@ -91,12 +100,14 @@ jobs:
           IMAGE_TAG=${{ env.IMAGE_NAMESPACE }}:${{ env.TEMPLATE }}-latest make test
 
       - name: Push Docker Image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./dist/dev/${{ env.TEMPLATE }}
           ### For Cross Platform OSX builds uncomment these lines
-          # platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ env.IMAGE_TAG }}
           cache-to: type=inline
+
+...

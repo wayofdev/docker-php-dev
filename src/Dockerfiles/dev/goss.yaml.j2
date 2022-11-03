@@ -1,3 +1,5 @@
+---
+
 file:
 {% if true == install_faketime %}
   /usr/lib/faketime/libfaketime.so.1:
@@ -83,3 +85,5 @@ command:
       - "/usr/lib/faketime/libfaketime.so.1"
     exit-status: 0
 {% endif %}
+
+...
