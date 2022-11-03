@@ -1,3 +1,24 @@
+<br>
+
+<div align="center">
+<img width="456" src="https://raw.githubusercontent.com/wayofdev/docker-php-dev/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only">
+<img width="456" src="https://raw.githubusercontent.com/wayofdev/docker-php-dev/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only">
+</div>
+
+<br>
+
+<br>
+
+<div align="center">
+<a href="https://actions-badge.atrox.dev/wayofdev/docker-php-dev/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fdocker-php-dev%2Fbadge&style=flat-square"/></a>
+<a href="https://github.com/wayofdev/docker-php-dev/tags"><img src="https://img.shields.io/github/v/tag/wayofdev/docker-php-dev?sort=semver&style=flat-square" alt="Latest Version"></a>
+<a href="https://hub.docker.com/repository/docker/wayofdev/php-dev"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/wayofdev/php-dev?style=flat-square"></a>
+<a href="LICENSE"><img src="https://img.shields.io/github/license/wayofdev/docker-php-dev.svg?style=flat-square&color=blue" alt="Software License"/></a>
+<a href="#"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/docker-php-dev/latest?style=flat-square"></a>
+</div>
+
+<br>
+
 # Docker Image: PHP Dev(el)
 
 Repository contains dist folder with generated, local development ready, PHP images and source code located in src folder. Written using Ansible, to generate them. It is used, together with other WOD images, to create a local development environment for our projects.
