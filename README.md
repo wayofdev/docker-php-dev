@@ -39,13 +39,14 @@ Additionaly to upstream images, enabled extensions by default:
 Included system tools for easier local development:
 
 | Package                                           | Type |
-| ------------------------------------------------- | ---- |
+|---------------------------------------------------| ---- |
 | git                                               | apk  |
 | bash                                              | apk  |
 | unzip                                             | apk  |
 | nano                                              | apk  |
 | composer                                          | bin  |
 | [faketime](https://github.com/wolfcw/libfaketime) | apk  |
+| [wait4x](https://github.com/atkrad/wait4x)        | apk  |
 
 <br>
 
@@ -94,7 +95,7 @@ $ make generate
 
 To install dependencies and start development you can check contents of our `Makefile`
 
-### →  Requirments
+### →  Requirements
 
 For testing purposes we use **goss** and **dgoss**, follow installation instructions on  [their official README](https://github.com/aelsabbahy/goss/blob/master/extras/dgoss/README.md)
 

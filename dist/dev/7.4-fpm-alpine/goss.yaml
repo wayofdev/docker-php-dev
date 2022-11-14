@@ -26,6 +26,8 @@ package:
     installed: true
   unzip:
     installed: true
+  wait4x:
+    installed: true
 command:
   "php -r \"xdebug_info();\"":
     stdout:

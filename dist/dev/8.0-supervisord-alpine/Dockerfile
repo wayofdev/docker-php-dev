@@ -26,6 +26,7 @@ RUN set -eux; \
         bash \
         unzip \
         nano \
+        wait4x \
     # Temporary build dependencies for compiling Pecl extensions
     && apk add --no-cache --virtual .temp-build-deps \
         $PHPIZE_DEPS \

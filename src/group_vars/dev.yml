@@ -59,5 +59,6 @@ system_packages:
   - bash
   - unzip
   - nano
+  - wait4x
 
 ...
