@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/wayofdev/docker-php-dev/compare/v2.0.0...v2.1.0) (2022-11-14)
+
+
+### Features
+
+* add wait4x apk ([5b00624](https://github.com/wayofdev/docker-php-dev/commit/5b006244590fe5d1dde42f91f6b2243ad3f3bdc1))
+
 ## [2.0.0](https://github.com/wayofdev/docker-php-dev/compare/v1.1.0...v2.0.0) (2022-11-03)
 
 
