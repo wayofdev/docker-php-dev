@@ -47,5 +47,7 @@ RUN set -eux; \
 
 COPY --chown=www-data ./configs/99-xdebug.ini /usr/local/etc/php/conf.d/
 
+ENV LD_PRELOAD="$LD_PRELOAD /usr/lib/faketime/libfaketime.so.1"
+
 USER www-data
 

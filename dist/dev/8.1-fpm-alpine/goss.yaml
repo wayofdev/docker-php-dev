@@ -55,5 +55,9 @@ command:
     stdout:
       - "/usr/lib/faketime/libfaketime.so.1"
     exit-status: 0
+  "FAKETIME='2007-09-09 06:14:22' date":
+    stdout:
+      - "Sun Sep  9 06:14:22 UTC 2007"
+    exit-status: 0
 
 ...
