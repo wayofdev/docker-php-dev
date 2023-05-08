@@ -60,5 +60,6 @@ system_packages:
   - unzip
   - nano
   - wait4x
+  - openssh
 
 ...

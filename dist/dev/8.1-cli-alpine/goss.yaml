@@ -16,6 +16,8 @@ package:
     installed: true
   nano:
     installed: true
+  openssh:
+    installed: true
   unzip:
     installed: true
   wait4x:
