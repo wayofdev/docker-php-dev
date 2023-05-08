@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Repository checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.2.0
         with:
           fetch-depth: 0
 
       - name: Differential ShellCheck
-        uses: redhat-plumbers-in-action/differential-shellcheck@latest
+        uses: redhat-plumbers-in-action/differential-shellcheck@v3
         with:
           severity: warning
           token: ${{ secrets.GITHUB_TOKEN }}

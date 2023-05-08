@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/wayofdev/docker-php-dev/compare/v2.1.0...v2.1.1) (2022-11-25)
+
+
+### Bug Fixes
+
+* libfaketime ([7fa1cce](https://github.com/wayofdev/docker-php-dev/commit/7fa1cce6d4f5e74a9141e1ac156819e179c0d34f))
+
 ## [2.1.0](https://github.com/wayofdev/docker-php-dev/compare/v2.0.0...v2.1.0) (2022-11-14)
 
 
