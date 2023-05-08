@@ -20,7 +20,6 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -93,11 +92,13 @@ jobs:
         if: success() && startsWith(github.ref, 'refs/tags/')
         run: |
           IMAGE_TAG=${{ env.IMAGE_NAMESPACE }}:${{ env.TEMPLATE }}-${{ env.VERSION }} make test
+          echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_ENV
 
       - name: Test Docker Master Image
         if: success() && ! startsWith(github.ref, 'refs/tags/')
         run: |
           IMAGE_TAG=${{ env.IMAGE_NAMESPACE }}:${{ env.TEMPLATE }}-latest make test
+          echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_ENV
 
       - name: Push Docker Image
         uses: docker/build-push-action@v3
