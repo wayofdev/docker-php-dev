@@ -1,6 +1,6 @@
 {{ edit_comment_dev }}
 
-FROM wayofdev/php-prod:{{ php_version }}-{{ php_type }}-{{ os_name }}-latest
+FROM wayofdev/php-base:{{ php_version }}-{{ php_type }}-{{ os_name }}-latest
 
 # Labels
 # https://github.com/opencontainers/image-spec/blob/main/annotations.md
@@ -16,6 +16,8 @@ LABEL "org.opencontainers.image.ref.name"="{{ php_version }}-{{ level }}"
 LABEL "org.opencontainers.image.title"="PHP-{{ php_type|upper }} {{ php_version }}-{{ level }}"
 LABEL "org.opencontainers.image.description"="PHP-{{ php_type|upper }} {{ php_version }}-{{ level }}"
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 USER root
 
 RUN set -eux; \
@@ -25,18 +27,18 @@ RUN set -eux; \
 {% for pkg in system_packages | unique %}
         {{ pkg }} \
 {% endfor %}
-    # Temporary build dependencies for compiling Pecl extensions
-    && apk add --no-cache --virtual .temp-build-deps \
-        $PHPIZE_DEPS \
-    # Pecl Dependencies
-    # Xdebug
-{% if 'xdebug' in ext_pecl_enabled %}
-    && pecl install xdebug-{{ ext_pecl_versions.xdebug }} \
-    && docker-php-ext-enable xdebug \
-{% endif %}
+    && \
+    curl -sSLf \
+        -o /usr/local/bin/install-php-extensions \
+        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions \
+    && chmod +x /usr/local/bin/install-php-extensions \
+    && install-php-extensions \
+{% for ext in ext_pecl_enabled | unique | sort %}
+        {{ ext }} \
+{% endfor %}
     # Other Dependencies
-    # Composer
 {% if true == install_composer %}
+    # Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
 {% endif %}
 {% if 'cli' == php_type %}
@@ -58,8 +60,10 @@ RUN set -eux; \
     && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing libfaketime \
     && echo "/usr/lib/faketime/libfaketime.so.1" >> /etc/ld.so.preload \
 {% endif %}
-    && chown -R www-data:www-data /usr/local/etc/php/conf.d/ \
-    && apk del -f .temp-build-deps
+    && install-php-extensions --cleanup \
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /tmp/* \
+    && rm -rf /var/log/*
 
 {% if 'xdebug' in ext_pecl_enabled %}
 COPY --chown=www-data ./configs/99-xdebug.ini /usr/local/etc/php/conf.d/

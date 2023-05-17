@@ -1,13 +1,20 @@
+# BuildKit enables higher performance docker builds and caching possibility
+# to decrease build times and increase productivity for free.
+# https://docs.docker.com/compose/environment-variables/envvars/
 export DOCKER_BUILDKIT ?= 1
-IMAGE_NAMESPACE ?= wayofdev/php-dev
-TEMPLATE ?= 8.1-cli-alpine
+export COMPOSE_DOCKER_CLI_BUILD ?= 1
 
-IMAGE_TAG ?= $(IMAGE_NAMESPACE):$(TEMPLATE)-latest
-DOCKERFILE_DIR ?= ./dist/dev/$(TEMPLATE)
+IMAGE_NAMESPACE ?= wayofdev/php-dev
+IMAGE_TEMPLATE ?= 8.2-fpm-alpine
+IMAGE_TAG ?= $(IMAGE_NAMESPACE):$(IMAGE_TEMPLATE)-latest
+
+DOCKERFILE_DIR ?= ./dist/dev/$(IMAGE_TEMPLATE)
 CACHE_FROM ?= $(IMAGE_TAG)
 OS ?= $(shell uname)
 CURRENT_DIR ?= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
+# Self documenting Makefile code
+# ------------------------------------------------------------------------------------
 ifneq ($(TERM),)
 	BLACK := $(shell tput setaf 0)
 	RED := $(shell tput setaf 1)
@@ -47,13 +54,26 @@ help:
 	@echo '    🏢 ${YELLOW}Org                     wayofdev (github.com/wayofdev)${RST}'
 .PHONY: help
 
-all: build test
+.EXPORT_ALL_VARIABLES:
+
+# Default action
+# Defines default command when `make` is executed without additional parameters
+# ------------------------------------------------------------------------------------
+all: generate build test
 PHONY: all
 
+
+# Docker Actions
+# ------------------------------------------------------------------------------------
 build: ## Build default docker image
 	cd $(CURRENT_DIR)$(DOCKERFILE_DIR); \
-	docker build . -t $(IMAGE_TAG)
+	docker build -t $(IMAGE_TAG) .
 PHONY: build
+
+analyze: ## Analyze docker image
+	cd $(CURRENT_DIR)$(DOCKERFILE_DIR); \
+	dive build -t $(IMAGE_TAG) .
+.PHONY: analyze
 
 build-from-cache: ## Build default docker image using cached layers
 	cd $(CURRENT_DIR)$(DOCKERFILE_DIR); \
@@ -77,40 +97,44 @@ ssh: ## Login into built image
 	docker run --rm -it -v $(PWD)/:/opt/docker-php-dev $(IMAGE_TAG) sh
 .PHONY: ssh
 
-hadolint: ## Run hadolint over dist Dockerfiles
-	hadolint -V ./dist/dev/7.4-cli-alpine/Dockerfile
-	hadolint -V ./dist/dev/7.4-fpm-alpine/Dockerfile
-	hadolint -V ./dist/dev/7.4-supervisord-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.0-cli-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.0-fpm-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.0-supervisord-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.1-cli-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.1-fpm-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.1-supervisord-alpine/Dockerfile
-.PHONY: hadolint
+
+# Ansible Actions
+# ------------------------------------------------------------------------------------
+generate: ## Generates dockerfiles from ansible templates
+	ansible-playbook src/playbook.yml
+PHONY: generate
+
+clean: ## Cleans up generated files
+	rm -rf ./dist/*
+PHONY: clean
 
 
-# Git Actions
+# Code Quality, Git, Linting, Testing
 # ------------------------------------------------------------------------------------
 hooks: ## Install git hooks from pre-commit-config
 	pre-commit install
 	pre-commit autoupdate
 .PHONY: hooks
 
-
-# Yaml Actions
-# ------------------------------------------------------------------------------------
-lint: ## Lints yaml files inside project
+lint-yaml: ## Lints yaml files inside project
 	yamllint .
-.PHONY: lint
+.PHONY: lint-yaml
 
+lint-ansible: ## Lint ansible files inside project
+	ansible-lint .
+.PHONY: lint-ansible
 
-# Ansible Actions
-# ------------------------------------------------------------------------------------
-generate:
-	ansible-playbook src/generate.yml
-PHONY: generate
-
-clean:
-	rm -rf ./dist/*
-PHONY: clean
+lint-docker: ## Run hadolint linter over dist Dockerfiles
+	hadolint -V ./dist/dev/7.4-cli-alpine/Dockerfile
+	hadolint -V ./dist/dev/7.4-fpm-alpine/Dockerfile
+	hadolint -V ./dist/dev/7.4-fpm-supervisord/Dockerfile
+	hadolint -V ./dist/dev/8.0-cli-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.0-fpm-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.0-fpm-supervisord/Dockerfile
+	hadolint -V ./dist/dev/8.1-cli-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.1-fpm-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.1-fpm-supervisord/Dockerfile
+	hadolint -V ./dist/dev/8.2-cli-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.2-fpm-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.2-fpm-supervisord/Dockerfile
+.PHONY: lint-docker

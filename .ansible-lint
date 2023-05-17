@@ -1,0 +1,12 @@
+---
+
+# https://ansible-lint.readthedocs.io/en/latest/configuring/
+
+skip_list:
+  - experimental
+
+exclude_paths:
+  - ./contrib
+  - ./.venv
+
+...

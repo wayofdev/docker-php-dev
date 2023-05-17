@@ -1,7 +1,0 @@
----
-
-process:
-  supervisord:
-    running: true
-
-...

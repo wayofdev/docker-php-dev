@@ -1,0 +1,32 @@
+---
+
+# https://github.com/google-github-actions/release-please-action#release-types-supported
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    tags:
+      - "v*.*.*"
+
+name: 📤 Upload artifacts
+
+jobs:
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Check out the codebase
+        uses: actions/checkout@v3
+
+      - name: 🚀 Generate dist files
+        run: make generate
+
+      - name: 🗜️ Archive dist files
+        run: tar -czvf dist.tar.gz dist
+
+      - name: 📤 Upload release assets
+        uses: alexellis/upload-assets@0.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          asset_paths: '["./dist.tar.gz"]'
+
+...
