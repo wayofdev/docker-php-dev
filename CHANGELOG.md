@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.2.0](https://github.com/wayofdev/docker-php-dev/compare/v2.1.1...v2.2.0) (2023-05-17)
+
+
+### Features
+
+* add ssh ([cb46ab3](https://github.com/wayofdev/docker-php-dev/commit/cb46ab3b05670d78d6146f73982231f0b7372607))
+* remove dist contents ([b99a1db](https://github.com/wayofdev/docker-php-dev/commit/b99a1db320927c033172b18d3e7374c229fb4dfe))
+* reusable workflows ([50cdecc](https://github.com/wayofdev/docker-php-dev/commit/50cdecc7c204665efe7fa2051018c1ee3f0b033f))
+
+
+### Bug Fixes
+
+* registry cache importer requires ref ([51cd99c](https://github.com/wayofdev/docker-php-dev/commit/51cd99c0f3225088ba180a5c140302968639902c))
+* registry cache importer requires ref ([44f5ecb](https://github.com/wayofdev/docker-php-dev/commit/44f5ecb0486df2000b24d9e197ac97ca27cc3911))
+* remove job name ([9b554ab](https://github.com/wayofdev/docker-php-dev/commit/9b554abec27032abca7718f7952a05b386ccd075))
+
 ## [2.1.1](https://github.com/wayofdev/docker-php-dev/compare/v2.1.0...v2.1.1) (2022-11-25)
 
 
