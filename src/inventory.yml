@@ -4,6 +4,7 @@ all:
   children:
     dev:
       hosts:
+        # PHP 7.4
         7.4-cli-alpine:
           ansible_connection: local
           level: dev
@@ -22,6 +23,7 @@ all:
           php_version: 7.4
           php_type: supervisord
           os_name: alpine
+        # PHP 8.0
         8.0-cli-alpine:
           ansible_connection: local
           level: dev
@@ -40,6 +42,7 @@ all:
           php_version: 8.0
           php_type: supervisord
           os_name: alpine
+        # PHP 8.1
         8.1-cli-alpine:
           ansible_connection: local
           level: dev
@@ -56,6 +59,25 @@ all:
           ansible_connection: local
           level: dev
           php_version: 8.1
+          php_type: supervisord
+          os_name: alpine
+        # PHP 8.2
+        8.2-cli-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.2
+          php_type: cli
+          os_name: alpine
+        8.2-fpm-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.2
+          php_type: fpm
+          os_name: alpine
+        8.2-supervisord-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.2
           php_type: supervisord
           os_name: alpine
 

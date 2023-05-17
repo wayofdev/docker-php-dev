@@ -13,7 +13,7 @@
 <a href="https://actions-badge.atrox.dev/wayofdev/docker-php-dev/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fdocker-php-dev%2Fbadge&style=flat-square"/></a>
 <a href="https://github.com/wayofdev/docker-php-dev/tags"><img src="https://img.shields.io/github/v/tag/wayofdev/docker-php-dev?sort=semver&style=flat-square" alt="Latest Version"></a>
 <a href="https://hub.docker.com/repository/docker/wayofdev/php-dev"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/wayofdev/php-dev?style=flat-square"></a>
-<a href="LICENSE"><img src="https://img.shields.io/github/license/wayofdev/docker-php-dev.svg?style=flat-square&color=blue" alt="Software License"/></a>
+<a href="LICENSE.md"><img src="https://img.shields.io/github/license/wayofdev/docker-php-dev.svg?style=flat-square&color=blue" alt="Software License"/></a>
 <a href="#"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/docker-php-dev/latest?style=flat-square"></a>
 </div>
 
@@ -26,7 +26,6 @@ Repository contains dist folder with generated, local development ready, PHP ima
 **Upstream images:**
 
 * [wayofdev/docker-php-base](https://github.com/wayofdev/docker-php-base)
-* [wayofdev/docker-php-prod](https://github.com/wayofdev/docker-php-prod)
 
 Additionaly to upstream images, enabled extensions by default:
 
@@ -63,9 +62,6 @@ Ansible is used to generate distribution files, to add or remove PHP extensions,
 ```yaml
 ext_pecl_enabled:
   - xdebug
-
-ext_pecl_versions:
-  xdebug: "3.1.5"
 
 install_composer: true
 install_faketime: true
@@ -115,6 +111,7 @@ Building default image:
 
 ```bash
 $ git clone git@github.com:wayofdev/docker-php-dev.git
+$ cd docker-php-dev
 $ make build
 ```
 
@@ -127,22 +124,25 @@ $ make
 Building all images:
 
 ```bash
-$ make build TEMPLATE="7.4-cli-alpine"
-$ make build TEMPLATE="7.4-fpm-alpine"
-$ make build TEMPLATE="7.4-supervisord-alpine"
-$ make build TEMPLATE="8.0-cli-alpine"
-$ make build TEMPLATE="8.0-fpm-alpine"
-$ make build TEMPLATE="8.0-supervisord-alpine"
-$ make build TEMPLATE="8.1-cli-alpine"
-$ make build TEMPLATE="8.1-fpm-alpine"
-$ make build TEMPLATE="8.1-supervisord-alpine"
+$ make build IMAGE_TEMPLATE="7.4-cli-alpine"
+$ make build IMAGE_TEMPLATE="7.4-fpm-alpine"
+$ make build IMAGE_TEMPLATE="7.4-supervisord-alpine"
+$ make build IMAGE_TEMPLATE="8.0-cli-alpine"
+$ make build IMAGE_TEMPLATE="8.0-fpm-alpine"
+$ make build IMAGE_TEMPLATE="8.0-supervisord-alpine"
+$ make build IMAGE_TEMPLATE="8.1-cli-alpine"
+$ make build IMAGE_TEMPLATE="8.1-fpm-alpine"
+$ make build IMAGE_TEMPLATE="8.1-supervisord-alpine"
+$ make build IMAGE_TEMPLATE="8.2-cli-alpine"
+$ make build IMAGE_TEMPLATE="8.2-fpm-alpine"
+$ make build IMAGE_TEMPLATE="8.2-supervisord-alpine"
 ```
 
 <br>
 
 ## 🧪 Testing
 
-You can check `Makefile` to get full list of commands for local testing. For testing you can use these comands to test whole role or separate tasks:
+You can check `Makefile` to get full list of commands for local testing. For testing, you can use these commands to test whole role or separate tasks:
 
 Testing default image:
 
@@ -153,15 +153,18 @@ $ make test
 To test all images:
 
 ```bash
-$ make test TEMPLATE="7.4-cli-alpine"
-$ make test TEMPLATE="7.4-fpm-alpine"
-$ make test TEMPLATE="7.4-supervisord-alpine"
-$ make test TEMPLATE="8.0-cli-alpine"
-$ make test TEMPLATE="8.0-fpm-alpine"
-$ make test TEMPLATE="8.0-supervisord-alpine"
-$ make test TEMPLATE="8.1-cli-alpine"
-$ make test TEMPLATE="8.1-fpm-alpine"
-$ make test TEMPLATE="8.1-supervisord-alpine"
+$ make test IMAGE_TEMPLATE="7.4-cli-alpine"
+$ make test IMAGE_TEMPLATE="7.4-fpm-alpine"
+$ make test IMAGE_TEMPLATE="7.4-supervisord-alpine"
+$ make test IMAGE_TEMPLATE="8.0-cli-alpine"
+$ make test IMAGE_TEMPLATE="8.0-fpm-alpine"
+$ make test IMAGE_TEMPLATE="8.0-supervisord-alpine"
+$ make test IMAGE_TEMPLATE="8.1-cli-alpine"
+$ make test IMAGE_TEMPLATE="8.1-fpm-alpine"
+$ make test IMAGE_TEMPLATE="8.1-supervisord-alpine"
+$ make test IMAGE_TEMPLATE="8.2-cli-alpine"
+$ make test IMAGE_TEMPLATE="8.2-fpm-alpine"
+$ make test IMAGE_TEMPLATE="8.2-supervisord-alpine"
 ```
 
 <br>
@@ -171,13 +174,19 @@ $ make test TEMPLATE="8.1-supervisord-alpine"
 Run **yamllint** to validate all yaml files in project:
 
 ```bash
-$ make lint
+$ make lint-yaml
 ```
 
 Run hadolint to validate created Dockerfiles:
 
 ```bash
-$ make hadolint
+$ make lint-docker
+```
+
+Run ansible-lint to validate project files:
+
+```bash
+$ make lint-ansible
 ```
 
 <br>
@@ -198,7 +207,7 @@ This repository was created in **2022** by [lotyp / wayofdev](https://github.com
 
 <img align="left" src="https://img.shields.io/github/contributors-anon/wayofdev/docker-php-dev?style=for-the-badge"/>
 
-<a href="https://github.com/wayofdev/docker-nginx/graphs/contributors">
+<a href="https://github.com/wayofdev/docker-php-dev/graphs/contributors">
   <img src="https://opencollective.com/wod/contributors.svg?width=890&button=false">
 </a>
 
