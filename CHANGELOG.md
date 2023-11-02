@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/wayofdev/docker-php-dev/compare/v2.2.1...v2.2.2) (2023-11-02)
+
+
+### Miscellaneous
+
+* **deps:** update actions/checkout action to v4 ([a8aacfa](https://github.com/wayofdev/docker-php-dev/commit/a8aacfac90ac0d14b55d310ac3013e279a803931))
+
 ## [2.2.1](https://github.com/wayofdev/docker-php-dev/compare/v2.2.0...v2.2.1) (2023-11-02)
 
 
