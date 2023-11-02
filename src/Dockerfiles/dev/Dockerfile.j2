@@ -57,7 +57,7 @@ RUN set -eux; \
     # Adding the faketime library to the preload file needs to be done last.
     # Otherwise, it will preload it for all commands that follow in this file
 {% if true == install_faketime %}
-    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing libfaketime \
+    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community libfaketime \
     && echo "/usr/lib/faketime/libfaketime.so.1" >> /etc/ld.so.preload \
 {% endif %}
     && install-php-extensions --cleanup \
