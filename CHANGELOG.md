@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/wayofdev/docker-php-dev/compare/v2.3.0...v2.3.1) (2023-12-18)
+
+
+### Bug Fixes
+
+* labeler ([d3a38ba](https://github.com/wayofdev/docker-php-dev/commit/d3a38babd6b66437e8c9ee2a886b962bdfc7d5b0))
+
 ## [2.3.0](https://github.com/wayofdev/docker-php-dev/compare/v2.2.2...v2.3.0) (2023-12-18)
 
 
