@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/wayofdev/docker-php-dev/compare/v2.2.2...v2.3.0) (2023-12-18)
+
+
+### Features
+
+* build dev image with imap & ldap from base image ([32bd66f](https://github.com/wayofdev/docker-php-dev/commit/32bd66f3281e66ac254ebb15eb68bdf7bf1b4714))
+
 ## [2.2.2](https://github.com/wayofdev/docker-php-dev/compare/v2.2.1...v2.2.2) (2023-11-02)
 
 
