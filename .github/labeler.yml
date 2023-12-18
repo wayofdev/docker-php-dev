@@ -4,11 +4,11 @@
 # Documentation https://github.com/marketplace/actions/labeler
 
 "type: documentation":
-  - assets/**/*
-  - .github/*
-  - ./*.md
+  - changed-files:
+    - any-glob-to-any-file: [ 'assets/**/*', '.github/*', './*.md' ]
 
 "type: maintenance":
-  - .github/workflows/*
+  - changed-files:
+    - any-glob-to-any-file: [ '.github/workflows/*' ]
 
 ...
