@@ -32,9 +32,14 @@ tpl_configs:
 tpl_docker_tests:
   - src: Dockerfiles/dev/goss.yaml.j2
     dst: "../dist/dev/{{ php_version }}-{{ php_type }}-{{ os_name }}/goss.yaml"
-  - src: Dockerfiles/dev/goss_wait.yaml
-    dst: "../dist/dev/{{ php_version }}-supervisord-{{ os_name }}/goss_wait.yaml"
 
+tpl_docker_fpm_tests:
+  - src: Dockerfiles/dev/goss_wait_fpm.yaml
+    dst: "../dist/dev/{{ php_version }}-fpm-{{ os_name }}/goss_wait.yaml"
+
+tpl_docker_supervisord_tests:
+  - src: Dockerfiles/dev/goss_wait_supervisord.yaml
+    dst: "../dist/dev/{{ php_version }}-supervisord-{{ os_name }}/goss_wait.yaml"
 
 # Enabled extensions
 ########################################################################################################################
