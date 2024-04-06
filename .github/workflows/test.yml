@@ -92,12 +92,13 @@ jobs:
           files: |
             ./docker-bake.hcl
             ${{ steps.meta.outputs.bake-file }}
+          push: false
           set: |
             *.tags=
             *.platform=linux/${{ matrix.builder.arch }}
             *.cache-from=type=gha,scope=build-${{ env.PLATFORM_CACHE_TAG }}
             *.cache-to=type=gha,scope=build-${{ env.PLATFORM_CACHE_TAG }}
-            *.output=type=docker,"name=${{ env.DOCKER_NAMESPACE }},${{ env.GHCR_NAMESPACE }}",name-canonical=true,push=false
+            *.output=type=docker,"name=${{ env.DOCKER_NAMESPACE }},${{ env.GHCR_NAMESPACE }}",name-canonical=true
 
       - name: 🧪 Test Docker image
         run: |
