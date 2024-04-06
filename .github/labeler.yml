@@ -5,10 +5,10 @@
 
 "type: documentation":
   - changed-files:
-    - any-glob-to-any-file: [ 'assets/**/*', '.github/*', './*.md' ]
+      - any-glob-to-any-file: ['assets/**/*', '.github/*.yml', './*.md']
 
 "type: maintenance":
   - changed-files:
-    - any-glob-to-any-file: [ '.github/workflows/*' ]
+      - any-glob-to-any-file: ['.github/workflows/*']
 
 ...

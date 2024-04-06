@@ -82,7 +82,7 @@ PHONY: build-from-cache
 
 test: ## Run dgoss tests over docker images
 	set -eux
-	GOSS_FILES_STRATEGY=cp GOSS_FILES_PATH=$(DOCKERFILE_DIR) dgoss run -t $(IMAGE_TAG)
+	GOSS_SLEEP="0.4" GOSS_WAIT_OPTS="-r 40s -s 2s > /dev/stdout" GOSS_FILES_STRATEGY=cp GOSS_FILES_PATH=$(DOCKERFILE_DIR) dgoss run -t $(IMAGE_TAG)
 .PHONY: test
 
 pull: ## Pulls docker image from upstream
@@ -125,16 +125,13 @@ lint-ansible: ## Lint ansible files inside project
 .PHONY: lint-ansible
 
 lint-docker: ## Run hadolint linter over dist Dockerfiles
-	hadolint -V ./dist/dev/7.4-cli-alpine/Dockerfile
-	hadolint -V ./dist/dev/7.4-fpm-alpine/Dockerfile
-	hadolint -V ./dist/dev/7.4-fpm-supervisord/Dockerfile
-	hadolint -V ./dist/dev/8.0-cli-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.0-fpm-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.0-fpm-supervisord/Dockerfile
 	hadolint -V ./dist/dev/8.1-cli-alpine/Dockerfile
 	hadolint -V ./dist/dev/8.1-fpm-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.1-fpm-supervisord/Dockerfile
+	hadolint -V ./dist/dev/8.1-supervisord-alpine/Dockerfile
 	hadolint -V ./dist/dev/8.2-cli-alpine/Dockerfile
 	hadolint -V ./dist/dev/8.2-fpm-alpine/Dockerfile
-	hadolint -V ./dist/dev/8.2-fpm-supervisord/Dockerfile
+	hadolint -V ./dist/dev/8.2-supervisord-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.3-cli-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.3-fpm-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.3-supervisord-alpine/Dockerfile
 .PHONY: lint-docker

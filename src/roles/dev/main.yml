@@ -1,39 +1,62 @@
 ---
 
 - name: Create dev directories
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     state: directory
-    mode: 0775
+    mode: "0775"
     recurse: true
   with_items:
     - "{{ tpl_directories }}"
 
 - name: Generate Dockerfiles
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dst }}"
     force: true
-    mode: 0644
+    mode: "0644"
   with_items:
     - "{{ tpl_dockerfiles }}"
 
 - name: Generate PHP configuration files
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dst }}"
     force: true
-    mode: 0644
+    mode: "0644"
   with_items:
     - "{{ tpl_configs }}"
 
-- name: Generate Dockerfile Goss tests
-  template:
+- name: Generate Dockerfile Goss tests for non-supervisord
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dst }}"
     force: true
-    mode:  0644
+    mode: "0644"
   with_items:
     - "{{ tpl_docker_tests }}"
+  when: php_type == 'cli'
+
+- name: Generate Dockerfile Goss tests for fpm
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    force: true
+    mode: "0644"
+  with_items:
+    - "{{ tpl_docker_tests }}"
+    - "{{ tpl_docker_fpm_tests }}"
+  when: php_type == 'fpm'
+
+- name: Generate Dockerfile Goss tests for supervisord
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    force: true
+    mode: "0644"
+  with_items:
+    - "{{ tpl_docker_tests }}"
+    - "{{ tpl_docker_supervisord_tests }}"
+  when: php_type == 'supervisord'
 
 ...
