@@ -80,5 +80,24 @@ all:
           php_version: 8.2
           php_type: supervisord
           os_name: alpine
+        # PHP 8.2
+        8.3-cli-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.3
+          php_type: cli
+          os_name: alpine
+        8.3-fpm-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.3
+          php_type: fpm
+          os_name: alpine
+        8.3-supervisord-alpine:
+          ansible_connection: local
+          level: dev
+          php_version: 8.3
+          php_type: supervisord
+          os_name: alpine
 
 ...

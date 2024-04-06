@@ -4,7 +4,6 @@
 <img width="456" src="https://raw.githubusercontent.com/wayofdev/docker-php-dev/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only">
 <img width="456" src="https://raw.githubusercontent.com/wayofdev/docker-php-dev/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only">
 </div>
-
 <br>
 
 <br>
@@ -124,18 +123,15 @@ $ make
 Building all images:
 
 ```bash
-$ make build IMAGE_TEMPLATE="7.4-cli-alpine"
-$ make build IMAGE_TEMPLATE="7.4-fpm-alpine"
-$ make build IMAGE_TEMPLATE="7.4-supervisord-alpine"
-$ make build IMAGE_TEMPLATE="8.0-cli-alpine"
-$ make build IMAGE_TEMPLATE="8.0-fpm-alpine"
-$ make build IMAGE_TEMPLATE="8.0-supervisord-alpine"
 $ make build IMAGE_TEMPLATE="8.1-cli-alpine"
 $ make build IMAGE_TEMPLATE="8.1-fpm-alpine"
 $ make build IMAGE_TEMPLATE="8.1-supervisord-alpine"
 $ make build IMAGE_TEMPLATE="8.2-cli-alpine"
 $ make build IMAGE_TEMPLATE="8.2-fpm-alpine"
 $ make build IMAGE_TEMPLATE="8.2-supervisord-alpine"
+$ make build IMAGE_TEMPLATE="8.3-cli-alpine"
+$ make build IMAGE_TEMPLATE="8.3-fpm-alpine"
+$ make build IMAGE_TEMPLATE="8.3-supervisord-alpine"
 ```
 
 <br>
@@ -153,18 +149,15 @@ $ make test
 To test all images:
 
 ```bash
-$ make test IMAGE_TEMPLATE="7.4-cli-alpine"
-$ make test IMAGE_TEMPLATE="7.4-fpm-alpine"
-$ make test IMAGE_TEMPLATE="7.4-supervisord-alpine"
-$ make test IMAGE_TEMPLATE="8.0-cli-alpine"
-$ make test IMAGE_TEMPLATE="8.0-fpm-alpine"
-$ make test IMAGE_TEMPLATE="8.0-supervisord-alpine"
 $ make test IMAGE_TEMPLATE="8.1-cli-alpine"
 $ make test IMAGE_TEMPLATE="8.1-fpm-alpine"
 $ make test IMAGE_TEMPLATE="8.1-supervisord-alpine"
 $ make test IMAGE_TEMPLATE="8.2-cli-alpine"
 $ make test IMAGE_TEMPLATE="8.2-fpm-alpine"
 $ make test IMAGE_TEMPLATE="8.2-supervisord-alpine"
+$ make test IMAGE_TEMPLATE="8.3-cli-alpine"
+$ make test IMAGE_TEMPLATE="8.3-fpm-alpine"
+$ make test IMAGE_TEMPLATE="8.3-supervisord-alpine"
 ```
 
 <br>
@@ -189,6 +182,12 @@ Run ansible-lint to validate project files:
 $ make lint-ansible
 ```
 
+Run [dive](https://github.com/wagoodman/dive) command to analyze image:
+
+```bash
+$ make analyze
+```
+
 <br>
 
 ## 🤝 License
@@ -207,9 +206,4 @@ This repository was created in **2022** by [lotyp / wayofdev](https://github.com
 
 <img align="left" src="https://img.shields.io/github/contributors-anon/wayofdev/docker-php-dev?style=for-the-badge"/>
 
-<a href="https://github.com/wayofdev/docker-php-dev/graphs/contributors">
-  <img src="https://opencollective.com/wod/contributors.svg?width=890&button=false">
-</a>
-
 <br>
-

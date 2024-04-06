@@ -137,4 +137,7 @@ lint-docker: ## Run hadolint linter over dist Dockerfiles
 	hadolint -V ./dist/dev/8.2-cli-alpine/Dockerfile
 	hadolint -V ./dist/dev/8.2-fpm-alpine/Dockerfile
 	hadolint -V ./dist/dev/8.2-fpm-supervisord/Dockerfile
+	hadolint -V ./dist/dev/8.3-cli-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.3-fpm-alpine/Dockerfile
+	hadolint -V ./dist/dev/8.3-fpm-supervisord/Dockerfile
 .PHONY: lint-docker

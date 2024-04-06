@@ -53,13 +53,21 @@ package:
 {% endif %}
 {% endif %}
 command:
+  "XDEBUG_MODE=off php -r \"xdebug_info();\"":
+    stdout:
+      - "xdebug.mode (through XDEBUG_MODE) => off => develop"
+    exit-status: 0
   "php -r \"xdebug_info();\"":
     stdout:
-      - "xdebug.mode => no value => no value"
+      - "xdebug.mode => develop => develop"
     exit-status: 0
   "XDEBUG_MODE=debug php -r \"xdebug_info();\"":
     stdout:
-      - "xdebug.mode (through XDEBUG_MODE) => debug => no value"
+      - "xdebug.mode (through XDEBUG_MODE) => debug => develop"
+    exit-status: 0
+  "XDEBUG_MODE=develop,debug php -r \"xdebug_info();\"":
+    stdout:
+      - "xdebug.mode (through XDEBUG_MODE) => develop,debug => develop"
     exit-status: 0
   "php -v":
     stdout:
