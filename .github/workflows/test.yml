@@ -112,8 +112,10 @@ jobs:
         with:
           command: cves,recommendations,compare
           ignore-unchanged: true
+          to: wayofdev/php-base:${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}-latest
           only-fixed: true
           only-severities: critical,high
+          keep-previous-comments: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
           dockerhub-password: ${{ secrets.DOCKER_TOKEN }}
