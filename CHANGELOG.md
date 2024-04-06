@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.4.0](https://github.com/wayofdev/docker-php-dev/compare/v2.3.1...v2.4.0) (2024-04-06)
+
+
+### Features
+
+* added php 8.3 support ([18a078d](https://github.com/wayofdev/docker-php-dev/commit/18a078d82d5e2a18d1a88bc96e0aff9666301ab6))
+* separate workflow for image testing ([18a078d](https://github.com/wayofdev/docker-php-dev/commit/18a078d82d5e2a18d1a88bc96e0aff9666301ab6))
+* switch to docker bake action ([18a078d](https://github.com/wayofdev/docker-php-dev/commit/18a078d82d5e2a18d1a88bc96e0aff9666301ab6))
+
+
+### Bug Fixes
+
+* **ansible:** allow to execute playbook for single image ([9847d9b](https://github.com/wayofdev/docker-php-dev/commit/9847d9bfce0e3f74389127ff253b4310a88de23f))
+
+
+### Continuous Integration
+
+* add build action ([42ad54a](https://github.com/wayofdev/docker-php-dev/commit/42ad54a61fefbad9f0c3c5cda480bdd12e502512))
+* fix failing supervisord tests ([d3bc887](https://github.com/wayofdev/docker-php-dev/commit/d3bc887b9dc072299da05084e0076377a8d1b0ec))
+* upgrade release-please ([fe3613c](https://github.com/wayofdev/docker-php-dev/commit/fe3613ceb007ce2da7e14c208b51242908085c8b))
+
 ## [2.3.1](https://github.com/wayofdev/docker-php-dev/compare/v2.3.0...v2.3.1) (2023-12-18)
 
 
