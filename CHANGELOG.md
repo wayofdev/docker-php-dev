@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/wayofdev/docker-php-dev/compare/v2.4.1...v2.5.0) (2024-04-10)
+
+
+### Features
+
+* add phive support ([#36](https://github.com/wayofdev/docker-php-dev/issues/36)) ([9a4097e](https://github.com/wayofdev/docker-php-dev/commit/9a4097eb9500ea42e28b7e8b0736efb42243e63f))
+
 ## [2.4.1](https://github.com/wayofdev/docker-php-dev/compare/v2.4.0...v2.4.1) (2024-04-06)
 
 
