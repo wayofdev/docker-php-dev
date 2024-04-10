@@ -5,7 +5,7 @@ export DOCKER_BUILDKIT ?= 1
 export COMPOSE_DOCKER_CLI_BUILD ?= 1
 
 IMAGE_NAMESPACE ?= wayofdev/php-dev
-IMAGE_TEMPLATE ?= 8.2-fpm-alpine
+IMAGE_TEMPLATE ?= 8.3-cli-alpine
 IMAGE_TAG ?= $(IMAGE_NAMESPACE):$(IMAGE_TEMPLATE)-latest
 
 DOCKERFILE_DIR ?= ./dist/dev/$(IMAGE_TEMPLATE)
