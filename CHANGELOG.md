@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1](https://github.com/wayofdev/docker-php-dev/compare/v2.5.0...v2.5.1) (2024-04-10)
+
+
+### Bug Fixes
+
+* add gnupg support for phive ([#38](https://github.com/wayofdev/docker-php-dev/issues/38)) ([b7b4218](https://github.com/wayofdev/docker-php-dev/commit/b7b421812d0fbcd920d84dcc0d19676a72eb6d4f))
+
 ## [2.5.0](https://github.com/wayofdev/docker-php-dev/compare/v2.4.1...v2.5.0) (2024-04-10)
 
 
