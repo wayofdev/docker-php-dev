@@ -62,5 +62,6 @@ system_packages:
   - nano
   - wait4x
   - openssh
+  - gnupg
 
 ...
