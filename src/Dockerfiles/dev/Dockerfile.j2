@@ -41,6 +41,11 @@ RUN set -eux; \
     # Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
 {% endif %}
+{% if true == install_phive %}
+    # Phive
+    && curl -sSL https://phar.io/releases/phive.phar -o /usr/local/bin/phive \
+    && chmod +x /usr/local/bin/phive \
+{% endif %}
 {% if 'cli' == php_type %}
 {% if true == install_postgres_client %}
     && apk add --no-cache \
