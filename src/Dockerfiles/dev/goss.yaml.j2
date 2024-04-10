@@ -87,6 +87,12 @@ command:
       - "Composer version"
     exit-status: 0
 {% endif %}
+{% if true == install_phive %}
+  "phive --version":
+    stdout:
+      - "Phive 0."
+    exit-status: 0
+{% endif %}
 {% if true == install_faketime %}
   "cat /etc/ld.so.preload":
     stdout:

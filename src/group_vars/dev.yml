@@ -48,6 +48,7 @@ ext_pecl_enabled:
   - pdo_sqlsrv
 
 install_composer: true
+install_phive: true
 install_faketime: true
 
 install_postgres_client: false
