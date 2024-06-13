@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/wayofdev/docker-php-dev/compare/v2.5.1...v2.6.0) (2024-06-13)
+
+
+### Features
+
+* add graphviz support ([044996e](https://github.com/wayofdev/docker-php-dev/commit/044996eb3cf6373ed9f3bdff758c2ebe91d01f72))
+
 ## [2.5.1](https://github.com/wayofdev/docker-php-dev/compare/v2.5.0...v2.5.1) (2024-04-10)
 
 
