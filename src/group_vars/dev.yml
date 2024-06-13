@@ -63,5 +63,6 @@ system_packages:
   - wait4x
   - openssh
   - gnupg
+  - graphviz
 
 ...
