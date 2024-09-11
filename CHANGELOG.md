@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.0](https://github.com/wayofdev/docker-php-dev/compare/v2.6.0...v2.7.0) (2024-09-11)
+
+
+### Features
+
+* local dev structure changes ([834a194](https://github.com/wayofdev/docker-php-dev/commit/834a194e66df94f05f2258c1aafd17fa2ddbc007))
+
 ## [2.6.0](https://github.com/wayofdev/docker-php-dev/compare/v2.5.1...v2.6.0) (2024-06-13)
 
 
