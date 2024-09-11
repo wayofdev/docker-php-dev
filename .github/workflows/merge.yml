@@ -1,0 +1,43 @@
+---
+
+on:  # yamllint disable-line rule:truthy
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - '🧪 Test Docker images'
+
+name: 📥 Merge pull requests
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      (
+        (github.actor == 'renovate[bot]' &&
+          startsWith(github.event.workflow_run.head_commit.message, 'deps(deps)')
+        ) ||
+        (github.actor == 'lotyp' &&
+          startsWith(github.event.workflow_run.head_commit.message, 'chore(master)')
+        )
+      )
+    steps:
+      - name: 🙋‍♂️ Request reviewer from @way-finder-bot
+        uses: wayofdev/gh-actions/actions/github/pull-request/request-review@v3.2.0
+        with:
+          reviewer: 'way-finder-bot'
+          github-token: "${{ secrets.WAY_FINDER_BOT_TOKEN }}"
+
+      - name: 🙋‍♂️ Assign @way-finder-bot
+        uses: wayofdev/gh-actions/actions/github/pull-request/add-assignee@v3.2.0
+        with:
+          assignee: 'way-finder-bot'
+          github-token: "${{ secrets.WAY_FINDER_BOT_TOKEN }}"
+
+      - name: ✅ Approve pull request
+        uses: wayofdev/gh-actions/actions/github/pull-request/approve@v3.2.0
+        with:
+          github-token: "${{ secrets.WAY_FINDER_BOT_TOKEN }}"

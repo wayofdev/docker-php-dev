@@ -13,3 +13,6 @@ indent_size = 2
 
 [*.yaml.j2]
 indent_size = 2
+
+[Makefile]
+indent_style = tab

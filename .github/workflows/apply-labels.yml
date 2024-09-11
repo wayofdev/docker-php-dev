@@ -8,13 +8,15 @@
 # https://github.com/actions/labeler/blob/master/README.md
 
 on:  # yamllint disable-line rule:truthy
-  pull_request:
+  pull_request_target:
+    types:
+      - opened
 
 name: 🏷️ Add labels
 
 jobs:
   label:
-    uses: wayofdev/gh-actions/.github/workflows/apply-labels.yml@master
+    uses: wayofdev/gh-actions/.github/workflows/apply-labels.yml@v3.2.0
     with:
       os: ubuntu-latest
     secrets:

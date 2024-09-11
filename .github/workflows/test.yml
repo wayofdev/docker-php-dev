@@ -1,9 +1,5 @@
 ---
 
-concurrency:
-  group: "${{ github.workflow }}-${{ github.ref }}"
-  cancel-in-progress: true
-
 on:  # yamllint disable-line rule:truthy
   pull_request:
     paths-ignore:
@@ -14,6 +10,10 @@ env:
   GHCR_NAMESPACE: ghcr.io/wayofdev/docker-php-dev
 
 name: 🧪 Test Docker images
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -33,11 +33,11 @@ jobs:
           tag="${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}-${{ matrix.builder.arch }}"
           php_version_slug="${php_version//./}"
           target="php-${php_version_slug}-${{ matrix.php_type }}-${{ matrix.os_name }}"
-          echo "TARGET=${target}" >> $GITHUB_ENV
-          echo "PLATFORM_CACHE_TAG=${tag}" >> $GITHUB_ENV
+          echo "TARGET=${target}" >> "$GITHUB_ENV"
+          echo "PLATFORM_CACHE_TAG=${tag}" >> "$GITHUB_ENV"
 
       - name: 📦 Check out the codebase
-        uses: actions/checkout@v4.1.4
+        uses: actions/checkout@v4.1.7
 
       - name: 🛠️ Install goss and dgoss
         uses: e1himself/goss-installation-action@v1.2.1
@@ -86,7 +86,7 @@ jobs:
 
       - name: 🧪 Bake image for testing
         id: bake
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v5.7.0
         with:
           targets: ${{ env.TARGET }}
           files: |
@@ -114,7 +114,7 @@ jobs:
           ignore-unchanged: true
           only-fixed: true
           only-severities: critical,high
-          keep-previous-comments: false
+          keep-previous-comments: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
           dockerhub-password: ${{ secrets.DOCKER_TOKEN }}
