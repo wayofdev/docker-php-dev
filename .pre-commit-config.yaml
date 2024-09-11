@@ -2,11 +2,13 @@
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: fix-encoding-pragma
+      - id: check-added-large-files
+        args: ['--maxkb=600']
 
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.35.1
@@ -14,27 +16,34 @@ repos:
       - id: yamllint
         files: \.(yaml|yml)$
         types: [file, yaml]
-        entry: yamllint --strict
+        entry: yamllint -c .github/.yamllint.yaml --strict
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.21.3
+    rev: v3.29.0
     hooks:
       - id: commitizen
         stages:
           - commit-msg
 
+  - repo: https://github.com/mpalmer/action-validator
+    rev: v0.6.0
+    hooks:
+      - id: action-validator
+        stages:
+          - commit-msg
+
   - repo: https://github.com/ansible/ansible-lint
-    rev: v24.2.1
+    rev: v24.9.0
     hooks:
       - id: ansible-lint
-        entry: ansible-lint . --force-color
+        entry: bash -c 'YAMLLINT_CONFIG_FILE=".github/.yamllint.yaml" ansible-lint . --force-color -c .github/.ansible-lint.yml'
         pass_filenames: false
         always_run: true
         additional_dependencies:
           - .[community]
 
   - repo: https://github.com/robertdebock/pre-commit
-    rev: v1.5.2
+    rev: v1.5.3
     hooks:
       - id: ansible_role_find_unused_variable
       - id: ansible_role_find_empty_files

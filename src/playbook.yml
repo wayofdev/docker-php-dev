@@ -1,10 +1,12 @@
 ---
 
-- hosts: all
+- name: Generate PHP Dockerfiles
+  hosts: all
   gather_facts: false
   tags:
     - template
   tasks:
-    - import_tasks: roles/dev/main.yml
+    - name: Create dist for all supported PHP versions
+      ansible.builtin.import_tasks: roles/dev/main.yml
 
 ...

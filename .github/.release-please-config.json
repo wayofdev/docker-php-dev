@@ -42,21 +42,6 @@
         {
             "type": "test",
             "section": "Tests",
-            "hidden": false
-        },
-        {
-            "type": "ci",
-            "section": "Continuous Integration",
-            "hidden": false
-        },
-        {
-            "type": "chore",
-            "section": "Miscellaneous",
-            "hidden": true
-        },
-        {
-            "type": "revert",
-            "section": "Reverts",
             "hidden": true
         },
         {
@@ -65,13 +50,23 @@
             "hidden": true
         },
         {
-            "type": "security",
-            "section": "Security",
+            "type": "ci",
+            "section": "Continuous Integration",
+            "hidden": true
+        },
+        {
+            "type": "chore",
+            "section": "Miscellaneous",
             "hidden": true
         },
         {
             "type": "style",
             "section": "Styles",
+            "hidden": true
+        },
+        {
+            "type": "revert",
+            "section": "Reverts",
             "hidden": true
         }
     ]

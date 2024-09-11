@@ -1,9 +1,5 @@
 ---
 
-concurrency:
-  group: "${{ github.workflow }}-${{ github.ref }}"
-  cancel-in-progress: true
-
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
@@ -12,12 +8,18 @@ on:  # yamllint disable-line rule:truthy
   release:
     types:
       - released
+  schedule:
+    - cron: "30 10 * * *"
 
 env:
   DOCKER_NAMESPACE: wayofdev/php-dev
   GHCR_NAMESPACE: ghcr.io/wayofdev/docker-php-dev
 
 name: 🚀 Build docker images with latest tag
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -37,11 +39,11 @@ jobs:
           tag="${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}-${{ matrix.builder.arch }}"
           php_version_slug="${php_version//./}"
           target="php-${php_version_slug}-${{ matrix.php_type }}-${{ matrix.os_name }}"
-          echo "TARGET=${target}" >> $GITHUB_ENV
-          echo "PLATFORM_CACHE_TAG=${tag}" >> $GITHUB_ENV
+          echo "TARGET=${target}" >> "$GITHUB_ENV"
+          echo "PLATFORM_CACHE_TAG=${tag}" >> "$GITHUB_ENV"
 
       - name: 📦 Check out the codebase
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.7
 
       - name: 🤖 Generate dist files
         run: ansible-playbook src/playbook.yml -l ${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}
@@ -88,6 +90,7 @@ jobs:
       - name: 🔑 Login to docker-hub
         uses: docker/login-action@v3
         with:
+          registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
@@ -100,7 +103,7 @@ jobs:
 
       - name: 🚀 Bake image and push to docker-hub and GHCR
         id: bake
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v5.7.0
         with:
           targets: ${{ env.TARGET }}
           files: |
@@ -175,6 +178,9 @@ jobs:
           platforms: linux/amd64,linux/arm64
           buildkitd-flags: "--debug"
 
+      - name: 📦 Check out the codebase
+        uses: actions/checkout@v4.1.7
+
       - name: 🚀 Create manifest list and push
         working-directory: /tmp
         run: |
@@ -196,7 +202,10 @@ jobs:
             docker buildx imagetools create $(jq -cr ".target.\"docker-metadata-action\".tags | map(select(startswith(\"${GHCR_NAMESPACE}\")) | \"-t \" + .) | join(\" \")" /tmp/bake-meta-${variant}-amd64.json) \
               "${GHCR_NAMESPACE}@sha256:${DIGEST_AMD64}" \
               "${GHCR_NAMESPACE}@sha256:${DIGEST_ARM64}"
-
           done
+
+      # - name: 🚀 Create manifest list and push
+      #   shell: bash
+      #   run: .github/scripts/build-images.sh
 
 ...
