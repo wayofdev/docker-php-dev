@@ -1,7 +1,0 @@
----
-
-trustedRegistries:
-  - docker.io
-  - "*.gcr.io"
-
-...
