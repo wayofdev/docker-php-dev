@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.4](https://github.com/wayofdev/docker-php-dev/compare/v2.7.3...v2.7.4) (2024-10-02)
+
+
+### Dependencies
+
+* **deps:** update docker/bake-action action to v5.10.0 ([189fb28](https://github.com/wayofdev/docker-php-dev/commit/189fb286919badc2444c264f1326634c33045220))
+
 ## [2.7.3](https://github.com/wayofdev/docker-php-dev/compare/v2.7.2...v2.7.3) (2024-09-27)
 
 
