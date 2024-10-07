@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.5](https://github.com/wayofdev/docker-php-dev/compare/v2.7.4...v2.7.5) (2024-10-07)
+
+
+### Dependencies
+
+* **deps:** update actions/checkout action to v4.2.1 ([a5b0abc](https://github.com/wayofdev/docker-php-dev/commit/a5b0abc30e7af13bf401d3ffcfb0310b0533c44e))
+
 ## [2.7.4](https://github.com/wayofdev/docker-php-dev/compare/v2.7.3...v2.7.4) (2024-10-02)
 
 
