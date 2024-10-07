@@ -43,7 +43,7 @@ jobs:
           echo "PLATFORM_CACHE_TAG=${tag}" >> "$GITHUB_ENV"
 
       - name: 📦 Check out the codebase
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@v4.2.1
 
       - name: 🤖 Generate dist files
         run: ansible-playbook src/playbook.yml -l ${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}
@@ -179,7 +179,7 @@ jobs:
           buildkitd-flags: "--debug"
 
       - name: 📦 Check out the codebase
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@v4.2.1
 
       - name: 🚀 Create manifest list and push
         working-directory: /tmp

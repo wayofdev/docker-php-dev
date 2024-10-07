@@ -37,7 +37,7 @@ jobs:
           echo "PLATFORM_CACHE_TAG=${tag}" >> "$GITHUB_ENV"
 
       - name: 📦 Check out the codebase
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@v4.2.1
 
       - name: 🛠️ Install goss and dgoss
         uses: e1himself/goss-installation-action@v1.2.1
