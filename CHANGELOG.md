@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.8.0](https://github.com/wayofdev/docker-php-dev/compare/v2.7.9...v2.8.0) (2024-12-05)
+
+
+### Features
+
+* php 8.4 support ([7d372e2](https://github.com/wayofdev/docker-php-dev/commit/7d372e2dc1356f390c9cb23d94006dfa356e7ddc))
+
+
+### Documentation
+
+* update readme ([2697904](https://github.com/wayofdev/docker-php-dev/commit/2697904dc03913779399b209f0761b476c5a781d))
+
 ## [2.7.9](https://github.com/wayofdev/docker-php-dev/compare/v2.7.8...v2.7.9) (2024-12-03)
 
 
