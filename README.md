@@ -64,6 +64,7 @@ On top of the extensions provided by the base image, this development image incl
 | [faketime](https://github.com/wolfcw/libfaketime) | apk  |
 | [wait4x](https://github.com/atkrad/wait4x)        | apk  |
 | composer                                          | bin  |
+| [phive](https://github.com/phar-io/phive)         | bin  |
 
 <br>
 
