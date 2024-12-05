@@ -8,7 +8,7 @@ export COMPOSE_DOCKER_CLI_BUILD ?= 1
 DOCKER ?= docker
 
 IMAGE_NAMESPACE ?= wayofdev/php-dev
-IMAGE_TEMPLATE ?= 8.3-cli-alpine
+IMAGE_TEMPLATE ?= 8.4-cli-alpine
 IMAGE_TAG ?= $(IMAGE_NAMESPACE):$(IMAGE_TEMPLATE)-latest
 
 DOCKERFILE_DIR ?= ./dist/dev/$(IMAGE_TEMPLATE)
