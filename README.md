@@ -9,13 +9,13 @@
     <br>
 </p>
 
-<div align="center">
+<p align="center">
 <a href="https://actions-badge.atrox.dev/wayofdev/docker-php-dev/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fdocker-php-dev%2Fbadge&style=flat-square"/></a>
 <a href="https://github.com/wayofdev/docker-php-dev/tags"><img src="https://img.shields.io/github/v/tag/wayofdev/docker-php-dev?sort=semver&style=flat-square" alt="Latest Version"></a>
 <a href="https://hub.docker.com/repository/docker/wayofdev/php-dev"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/wayofdev/php-dev?style=flat-square"></a>
 <a href="LICENSE.md"><img src="https://img.shields.io/github/license/wayofdev/docker-php-dev.svg?style=flat-square&color=blue" alt="Software License"/></a>
 <a href="#"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/docker-php-dev/latest?style=flat-square"></a>
-</div>
+</p>
 
 <br>
 
@@ -32,7 +32,7 @@ If you **like/use** this package, please consider ⭐️ **starring** it. Thanks
 ## 🚀 Features
 
 - **Based on wayofdev/docker-php-base:** Inherits all features and extensions from the base image.
-- **PHP Versions:** Supports PHP `8.1`, `8.2`, and `8.3`.
+- **PHP Versions:** Supports PHP `8.1`, `8.2`, `8.3`, and `8.4`.
 - **Image Types:** Available in CLI, FPM, and Supervisord variants.
 - **Xdebug:** Pre-installed and configured for debugging.
 - **Development Tools:** Includes `git`, `bash`, `unzip`, `nano`, and more.
@@ -79,7 +79,7 @@ Replace `8.3-fpm-alpine-latest` with your desired PHP version, type, and tag.
 
 ### → Available Image Variants
 
-- **PHP Versions:** 8.1, 8.2, 8.3
+- **PHP Versions:** 8.1, 8.2, 8.3, 8.4
 - **Types:** cli, fpm, supervisord
 - **Architectures:** amd64, arm64
 
@@ -101,7 +101,6 @@ docker pull wayofdev/php-dev:8.3-supervisord-alpine-latest
 Here's a more comprehensive example `docker-compose.yml` for a Laravel project with additional services:
 
 ```yaml
-version: '3.8'
 services:
   app:
     image: wayofdev/php-dev:8.3-fpm-alpine-latest
@@ -114,8 +113,6 @@ services:
       - database
     links:
       - database
-    external_links:
-      - 'rabbitmq.${COMPOSE_PROJECT_NAME}.alias:rabbitmq'
     volumes:
       - ./.github/assets:/assets:rw,cached
       - ./app:/app:rw,cached
@@ -227,6 +224,9 @@ make generate
   make build IMAGE_TEMPLATE="8.3-cli-alpine"
   make build IMAGE_TEMPLATE="8.3-fpm-alpine"
   make build IMAGE_TEMPLATE="8.3-supervisord-alpine"
+  make build IMAGE_TEMPLATE="8.4-cli-alpine"
+  make build IMAGE_TEMPLATE="8.4-fpm-alpine"
+  make build IMAGE_TEMPLATE="8.4-supervisord-alpine"
   ```
 
   These commands will build all supported image variants.
@@ -269,6 +269,9 @@ You can run tests using the following commands:
   make test IMAGE_TEMPLATE="8.3-cli-alpine"
   make test IMAGE_TEMPLATE="8.3-fpm-alpine"
   make test IMAGE_TEMPLATE="8.3-supervisord-alpine"
+  make test IMAGE_TEMPLATE="8.4-cli-alpine"
+  make test IMAGE_TEMPLATE="8.4-fpm-alpine"
+  make test IMAGE_TEMPLATE="8.4-supervisord-alpine"
   ```
 
 ### → Test Configuration

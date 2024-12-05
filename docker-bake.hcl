@@ -71,6 +71,27 @@ target "php-83-supervisord-alpine" {
     dockerfile = "./Dockerfile"
 }
 
+###########################
+##    PHP 8.4
+###########################
+target "php-84-cli-alpine" {
+    inherits = ["docker-metadata-action"]
+    context = "dist/dev/8.4-cli-alpine"
+    dockerfile = "./Dockerfile"
+}
+
+target "php-84-fpm-alpine" {
+    inherits = ["docker-metadata-action"]
+    context = "dist/dev/8.4-fpm-alpine"
+    dockerfile = "./Dockerfile"
+}
+
+target "php-84-supervisord-alpine" {
+    inherits = ["docker-metadata-action"]
+    context = "dist/dev/8.4-supervisord-alpine"
+    dockerfile = "./Dockerfile"
+}
+
 group "all" {
     targets = [
         "php-81-cli-alpine",
@@ -82,6 +103,9 @@ group "all" {
         "php-83-cli-alpine",
         "php-83-fpm-alpine",
         "php-83-supervisord-alpine",
+        "php-84-cli-alpine",
+        "php-84-fpm-alpine",
+        "php-84-supervisord-alpine",
     ]
 }
 
@@ -106,5 +130,13 @@ group "php-83" {
         "php-83-cli-alpine",
         "php-83-fpm-alpine",
         "php-83-supervisord-alpine",
+    ]
+}
+
+group "php-84" {
+    targets = [
+        "php-84-cli-alpine",
+        "php-84-fpm-alpine",
+        "php-84-supervisord-alpine",
     ]
 }
