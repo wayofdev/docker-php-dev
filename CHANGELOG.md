@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.3](https://github.com/wayofdev/docker-php-dev/compare/v2.8.2...v2.8.3) (2024-12-12)
+
+
+### Dependencies
+
+* **deps:** update ansible/ansible-lint action to v24.12.2 ([#73](https://github.com/wayofdev/docker-php-dev/issues/73)) ([cc300d0](https://github.com/wayofdev/docker-php-dev/commit/cc300d0d925928a5078d130fb82d81c00e26f97b))
+
 ## [2.8.2](https://github.com/wayofdev/docker-php-dev/compare/v2.8.1...v2.8.2) (2024-12-11)
 
 
