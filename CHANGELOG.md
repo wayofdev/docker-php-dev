@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.4](https://github.com/wayofdev/docker-php-dev/compare/v2.8.3...v2.8.4) (2024-12-16)
+
+
+### Dependencies
+
+* **deps:** update wagoid/commitlint-github-action action to v6.2.0 ([#75](https://github.com/wayofdev/docker-php-dev/issues/75)) ([7b8fb50](https://github.com/wayofdev/docker-php-dev/commit/7b8fb509158fbc83763eae06fda6c61243062994))
+
 ## [2.8.3](https://github.com/wayofdev/docker-php-dev/compare/v2.8.2...v2.8.3) (2024-12-12)
 
 
