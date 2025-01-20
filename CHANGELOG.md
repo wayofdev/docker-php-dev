@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.8](https://github.com/wayofdev/docker-php-dev/compare/v2.8.7...v2.8.8) (2025-01-20)
+
+
+### Dependencies
+
+* **deps:** update ansible/ansible-lint action to v25 ([#84](https://github.com/wayofdev/docker-php-dev/issues/84)) ([cd90a71](https://github.com/wayofdev/docker-php-dev/commit/cd90a711bd9c531559114539b8adb89e86f2630a))
+
 ## [2.8.7](https://github.com/wayofdev/docker-php-dev/compare/v2.8.6...v2.8.7) (2025-01-19)
 
 
