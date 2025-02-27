@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.14](https://github.com/wayofdev/docker-php-dev/compare/v2.8.13...v2.8.14) (2025-02-27)
+
+
+### Dependencies
+
+* **deps:** update googleapis/release-please-action action to v4.1.4 ([#96](https://github.com/wayofdev/docker-php-dev/issues/96)) ([b66babf](https://github.com/wayofdev/docker-php-dev/commit/b66babff56f401debf95ea52801bd34694e04d15))
+
 ## [2.8.13](https://github.com/wayofdev/docker-php-dev/compare/v2.8.12...v2.8.13) (2025-02-18)
 
 
