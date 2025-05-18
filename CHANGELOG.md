@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.8.16](https://github.com/wayofdev/docker-php-dev/compare/v2.8.15...v2.8.16) (2025-05-18)
+
+
+### Dependencies
+
+* **deps:** update ansible/ansible-lint action to v25.4.0 ([#99](https://github.com/wayofdev/docker-php-dev/issues/99)) ([37ab637](https://github.com/wayofdev/docker-php-dev/commit/37ab6378212f1be3cc9ea0d0e59a47b775b90a7f))
+* **deps:** update davidanson/markdownlint-cli2-action action to v20 ([#100](https://github.com/wayofdev/docker-php-dev/issues/100)) ([af82c8b](https://github.com/wayofdev/docker-php-dev/commit/af82c8bda8e80a20a11beef58fea76d366c3da31))
+* **deps:** update googleapis/release-please-action action to v4.2.0 ([#98](https://github.com/wayofdev/docker-php-dev/issues/98)) ([54cab40](https://github.com/wayofdev/docker-php-dev/commit/54cab4011afd92e1bdd5a050aa8d3cb76496a674))
+
 ## [2.8.15](https://github.com/wayofdev/docker-php-dev/compare/v2.8.14...v2.8.15) (2025-05-18)
 
 
