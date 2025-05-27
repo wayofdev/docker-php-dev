@@ -103,7 +103,7 @@ jobs:
 
       - name: 🚀 Bake image and push to docker-hub and GHCR
         id: bake
-        uses: docker/bake-action@v5.13.0
+        uses: docker/bake-action@v6.8.0
         with:
           targets: ${{ env.TARGET }}
           files: |
