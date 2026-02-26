@@ -80,7 +80,7 @@ jobs:
           mv "${{ steps.meta.outputs.bake-file }}" "/tmp/bake-meta-${{ env.PLATFORM_CACHE_TAG }}.json"
 
       - name: 📤 Upload meta bake definition
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bake-meta-${{ env.PLATFORM_CACHE_TAG }}.json
           path: /tmp/bake-meta-*.json
@@ -129,7 +129,7 @@ jobs:
           touch "/tmp/digests/${digest#sha256:}"
 
       - name: 📤 Upload digest
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: digests-${{ env.PLATFORM_CACHE_TAG }}
           path: /tmp/digests/*
@@ -142,14 +142,14 @@ jobs:
     steps:
 
       - name: 📥 Download meta bake definitions
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: bake-meta-*
           path: /tmp
           merge-multiple: true
 
       - name: 📥 Download meta bake definitions
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: digests-*
           path: /tmp/digests
