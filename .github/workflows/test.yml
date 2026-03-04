@@ -48,7 +48,7 @@ jobs:
         run: ansible-playbook src/playbook.yml -l ${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}
 
       - name: 🖥️ Setup docker QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: 🛠️ Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
